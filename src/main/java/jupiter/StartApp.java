@@ -11,10 +11,6 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 
-import ru.newnope.planets.physics.PhysicsException;
-import ru.newnope.planets.render.RenderUtils;
-import ru.newnope.planets.resources.Resources;
-import ru.newnope.planets.solarsystem.SolarSystem;
 
 public class StartApp {
 
