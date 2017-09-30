@@ -13,7 +13,7 @@ import org.lwjgl.opengl.PixelFormat;
 
 
 public class StartApp {
-
+    //Lust a stupid comment inside :)
     private boolean shouldExit = false;
     public static boolean working = true;
     public static boolean pausePhys = false;
