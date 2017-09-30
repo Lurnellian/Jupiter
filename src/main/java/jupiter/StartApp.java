@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 
 import javax.swing.JOptionPane;
 
+import jupiter.render.RenderUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
