@@ -1,6 +1,7 @@
 package jupiter.resourсes;
 
 import jupiter.Config;
+import org.newdawn.slick.opengl.ImageIOImageData;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

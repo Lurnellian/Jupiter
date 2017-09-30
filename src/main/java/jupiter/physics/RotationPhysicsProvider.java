@@ -1,6 +1,7 @@
 package jupiter.physics;
 
 import jupiter.StartApp;
+import jupiter.jupitermodel.SpaceObject;
 import jupiter.render.Coord3D;
 
 public class RotationPhysicsProvider extends PhysicsProvider{

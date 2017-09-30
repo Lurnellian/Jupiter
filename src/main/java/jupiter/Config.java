@@ -8,7 +8,7 @@ public class Config {
 
     public static boolean vSync = true;
     public static int fpsLimit = 0;
-    public static String resDir = "resources";
+    public static String resDir = "C:\\Users\\OleG\\Desktop\\study\\Jupiter\\src\\main\\resources";
     public static byte samples = 8;
     public static short details = 50;
     public static int width = 800;

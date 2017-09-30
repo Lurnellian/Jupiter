@@ -4,7 +4,10 @@ import java.nio.ByteBuffer;
 
 import javax.swing.JOptionPane;
 
+import jupiter.jupitermodel.JupiterModel;
+import jupiter.physics.PhysicsException;
 import jupiter.render.RenderUtils;
+import jupiter.resourсes.Resources;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -49,7 +52,7 @@ public class StartApp {
         try{
             Config.readFromArgs(args);
             //TODO переписать соларсистем
-            SolarSystem ss = new SolarSystem();
+            JupiterModel jm = new JupiterModel();
             Display.setTitle("Jupiter");
             Display.setDisplayMode(new DisplayMode(Config.width, Config.height));
             Display.setResizable(true);
@@ -65,7 +68,7 @@ public class StartApp {
             width = Display.getWidth();
             height = Display.getHeight();
             RenderUtils.init(width, height);
-            ss.init();
+            jm.init();
             Keyboard.create();
             Keyboard.enableRepeatEvents(false);
             Mouse.create();
@@ -78,7 +81,7 @@ public class StartApp {
                     GL11.glPushMatrix();
                     moveCamera();
                     GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
-                    ss.render(tickPart);
+                    jm.render(tickPart);
                     GL11.glPopMatrix();
                 }
                 Display.update(); //Must be called even if display not visible
@@ -102,7 +105,7 @@ public class StartApp {
                     delta = sysTime - utime;
                     tickPart = (50-delta)/50f;
                 }
-                if(ss.physics.error)
+                if(jm.physics.error)
                     throw new PhysicsException();
             }
         }catch(Throwable th){

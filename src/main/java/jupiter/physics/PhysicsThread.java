@@ -1,16 +1,17 @@
 package jupiter.physics;
 
 import jupiter.StartApp;
+import jupiter.jupitermodel.JupiterModel;
 
 public class PhysicsThread extends Thread {
 
     public boolean error = false;
     //TODO изменить соларсистем
-    private final SolarSystem ss;
+    private final JupiterModel jm;
 
-    public PhysicsThread(SolarSystem ss) {
+    public PhysicsThread(JupiterModel jm) {
         super("Physics");
-        this.ss = ss;
+        this.jm = jm;
     }
 
     @Override
@@ -21,7 +22,7 @@ public class PhysicsThread extends Thread {
             while(true){
                 long time = System.currentTimeMillis();
                 if(StartApp.working){
-                    ss.updatePhysics();
+                    jm.updatePhysics();
                     StartApp.physTicked = true;
                     if (System.currentTimeMillis() - utime >= 1000) {
                         utime = System.currentTimeMillis();
