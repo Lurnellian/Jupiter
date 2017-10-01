@@ -51,7 +51,6 @@ public class StartApp {
     private void start(String[] args) {
         try{
             Config.readFromArgs(args);
-            //TODO переписать соларсистем
             JupiterModel jm = new JupiterModel();
             Display.setTitle("Jupiter");
             Display.setDisplayMode(new DisplayMode(Config.width, Config.height));

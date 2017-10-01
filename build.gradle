@@ -1,19 +1,19 @@
-group 'Jupiter'
-version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-
-sourceCompatibility = 1.8
-
 repositories {
-    mavenCentral()
+    jcenter()
+    maven {
+        url "http://mvnrepository.com/artifact/"
+    }
+    ivy {
+        url "libs"
+    }
 }
 
 dependencies {
-    compile group: 'org.lwjgl.lwjgl', name: 'lwjgl', version: '2.9.1'
-    compile group: 'org.lwjgl.lwjgl', name: 'lwjgl_util', version: '2.9.1'
-   // compile group: 'org.l33tlabs.twl', name:'pngdecoder', version:'1.0'
-    compile group: 'org.newdawn.slick', name: 'slick-util', version: '1.0'
-    compile group: 'net.sf.jopt-simple', name:'jopt-simple', version:'4.8'
-    compile group: 'org.slick2d', name: 'slick2d-core', version: '1.0.2'
+    compile 'org.lwjgl.lwjgl:lwjgl:2.9.1'
+    compile 'org.lwjgl.lwjgl:lwjgl_util:2.9.1'
+    compile 'org.newdawn.slick:slick-util:1.0'
+    compile 'net.sf.jopt-simple:jopt-simple:4.8'
+   // compile group: 'org.slick2d', name: 'slick2d-core', version: '1.0.2'
 }

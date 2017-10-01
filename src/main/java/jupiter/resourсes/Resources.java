@@ -11,7 +11,6 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 public class Resources {
-    //TODO dir??
     private static final File assetsDir = new File(Config.resDir);
 
     public static InputStream getStream(String name) throws Exception {
