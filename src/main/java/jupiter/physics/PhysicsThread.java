@@ -6,7 +6,6 @@ import jupiter.jupitermodel.JupiterModel;
 public class PhysicsThread extends Thread {
 
     public boolean error = false;
-    //TODO изменить соларсистем
     private final JupiterModel jm;
 
     public PhysicsThread(JupiterModel jm) {

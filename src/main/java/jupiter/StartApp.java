@@ -155,8 +155,8 @@ public class StartApp {
         clickY = Mouse.getY();
         if(distance>-10)
             distance = -10;
-        else if(distance<-100)
-            distance = -100;
+        else if(distance<-500)
+            distance = -500;
     }
 
     private static abstract class KeyBind {

@@ -5,10 +5,12 @@ import jupiter.physics.DPhysicsProvider;
 import jupiter.physics.PhysicsProvider;
 
 public class Jupiter extends SpaceObject {
+    //TODO сделать вращение
 
     public Jupiter() {
         super("jupiter.png", 6.99F);
         this.ignoreLight = true;
+
     }
 
     @Override
