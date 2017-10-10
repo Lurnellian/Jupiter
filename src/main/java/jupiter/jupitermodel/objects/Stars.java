@@ -7,7 +7,7 @@ import jupiter.physics.PhysicsProvider;
 public class Stars extends SpaceObject {
 
     public Stars(){
-        super("stars.png", 501F);
+        super("stars.png", 1006F);
         renderInside = true;
     }
 
