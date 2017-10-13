@@ -5,6 +5,6 @@ import jupiter.render.Texture;
 public interface IHasAtmosphere {
 
     public Texture getAtmosphereTexture();
-    public float getAtmosphereSize();
+    public Float getAtmosphereSize();
 
 }

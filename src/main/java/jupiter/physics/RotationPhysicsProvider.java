@@ -7,7 +7,7 @@ import jupiter.render.Coord3D;
 public class RotationPhysicsProvider extends PhysicsProvider{
 
     public final SpaceObject center;
-    public final float radius, speed, speedSelf,orbitInclination;
+    public final Float radius, speed, speedSelf,orbitInclination;
     private Coord3D coord = new Coord3D();
     private float angle = 0;
     public float tilt = 0;
@@ -25,9 +25,9 @@ public class RotationPhysicsProvider extends PhysicsProvider{
     public Coord3D updatePosition() {
         if(!StartApp.pausePhys){
             angle+=speed;
-            coord.x = center.posX + (float)Math.cos(angle)*radius;
-            coord.y = center.posY + (float)Math.sin(angle)*radius;
-            coord.z = center.posZ + (float)Math.cos(angle)*radius*tilt +orbitInclination;
+            coord.x = center.getPosX() + (float)Math.cos(angle)*radius;
+            coord.y = center.getPosY() + (float)Math.sin(angle)*radius*0.5F;
+            coord.z = center.getPosZ() + (float)Math.cos(angle)*radius*tilt +orbitInclination;
             coord.rot+=speedSelf;
         }
         return coord;

@@ -32,7 +32,7 @@ public class JupiterModel {
         for(SpaceObject obj : objects)
             obj.init();
     }
-    public void render(float framePart) {
+    public void render(Float framePart) {
         for(SpaceObject obj : objects)
             obj.render(framePart);
     }

@@ -10,7 +10,7 @@ public class Europa extends SpaceObject {
 
     public Europa(Jupiter jup) {
         super("europe.png", 0.26f);
-        this.physics = new RotationPhysicsProvider(jup, 112, .0249f, -5f, 0.471f);
+        this.physics = new RotationPhysicsProvider(jup, 112.3F, .0249f, -5f, 0.471f);
     }
 
     @Override
