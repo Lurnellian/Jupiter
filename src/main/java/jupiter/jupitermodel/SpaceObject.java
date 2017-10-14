@@ -28,7 +28,9 @@ import static org.lwjgl.opengl.GL11.glTranslatef;
 
 public abstract class SpaceObject {
 
-    private Float semiMajorAxis, semiMinorAxis;
+    private Float semiMajorAxis;
+    private Float eccentricity;
+    private Float semiMinorAxis;
     private Float prevPosX = 0F, posX = 0F, prevPosY = 0F, posY = 0F, prevPosZ = 0F, posZ = 0F, prevRot = 0F, rot = 0F;
     private final Float size;
     private final Texture texture;
@@ -41,11 +43,12 @@ public abstract class SpaceObject {
         this.texture = new Texture(textureName);
         this.size = size;
     }
-    public SpaceObject(String textureName, Float size, Float semiMajorAxis, Float semiMinorAxis) {
+    public SpaceObject(String textureName, Float size, Float semiMajorAxis, Float eccentricity) {
         this.texture = new Texture(textureName);
         this.size = size;
         this.semiMajorAxis = semiMajorAxis;
-        this.semiMinorAxis = semiMinorAxis;
+        this.eccentricity = eccentricity;
+        this.semiMinorAxis = calculateSemiMinorAxis(eccentricity,semiMajorAxis);
     }
 
     public abstract PhysicsProvider getPhysics();
@@ -174,6 +177,14 @@ public abstract class SpaceObject {
         return prevRot;
     }
 
+    public Float getEccentricity() {
+        return eccentricity;
+    }
+
+    public void setEccentricity(Float eccentricity) {
+        this.eccentricity = eccentricity;
+    }
+
     public void setPrevRot(Float prevRot) {
         this.prevRot = prevRot;
     }
@@ -220,5 +231,9 @@ public abstract class SpaceObject {
 
     public void setRenderInside(boolean renderInside) {
         this.renderInside = renderInside;
+    }
+
+    private static Float calculateSemiMinorAxis(Float ecc,Float sma){
+        return (float)Math.sqrt(1-ecc)*sma;
     }
 }

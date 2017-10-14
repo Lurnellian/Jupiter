@@ -4,11 +4,13 @@ import jupiter.jupitermodel.SpaceObject;
 import jupiter.physics.DPhysicsProvider;
 import jupiter.physics.PhysicsProvider;
 
+import static jupiter.resourсes.SpaceObjectConstants.JUPITER.SIZE;
+
 public class Jupiter extends SpaceObject {
     //TODO сделать вращение
 
     public Jupiter() {
-        super("jupiter.png", 11.9153F);
+        super("jupiter.png", SIZE);
         this.ignoreLight = true;
 
     }
