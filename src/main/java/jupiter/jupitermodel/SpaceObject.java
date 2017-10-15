@@ -1,5 +1,7 @@
 package jupiter.jupitermodel;
 
+import org.lwjgl.BufferUtils;
+
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,29 +10,50 @@ import jupiter.physics.PhysicsProvider;
 import jupiter.render.Coord3D;
 import jupiter.render.RenderUtils;
 import jupiter.render.Texture;
-import org.lwjgl.BufferUtils;
-import static org.lwjgl.opengl.GL11.*;
+
+import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
+import static org.lwjgl.opengl.GL11.GL_LIGHT0;
+import static org.lwjgl.opengl.GL11.GL_LIGHTING;
+import static org.lwjgl.opengl.GL11.GL_POSITION;
+import static org.lwjgl.opengl.GL11.glCallList;
+import static org.lwjgl.opengl.GL11.glDisable;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glLight;
+import static org.lwjgl.opengl.GL11.glPopMatrix;
+import static org.lwjgl.opengl.GL11.glPushMatrix;
+import static org.lwjgl.opengl.GL11.glRotatef;
+import static org.lwjgl.opengl.GL11.glTranslatef;
 
 
 
 public abstract class SpaceObject {
 
-    public float prevPosX = 0, posX = 0, prevPosY = 0, posY = 0, prevPosZ = 0, posZ = 0, prevRot = 0, rot = 0;
-    public final float size;
-    public final Texture texture;
+    private Float semiMajorAxis;
+    private Float eccentricity;
+    private Float semiMinorAxis;
+    private Float prevPosX = 0F, posX = 0F, prevPosY = 0F, posY = 0F, prevPosZ = 0F, posZ = 0F, prevRot = 0F, rot = 0F;
+    private final Float size;
+    private final Texture texture;
     private List<Integer> glLists = new ArrayList<>();
-    public final boolean hasAtmosphere = this instanceof IHasAtmosphere;
+    private final boolean hasAtmosphere = this instanceof IHasAtmosphere;
    // public final boolean hasRings = this instanceof IHasRings;
-    public boolean ignoreLight = false, renderInside = false;
+    protected boolean ignoreLight = false, renderInside = false;
 
-    public SpaceObject(String textureName, float size) {
+    public SpaceObject(String textureName, Float size){
         this.texture = new Texture(textureName);
         this.size = size;
+    }
+    public SpaceObject(String textureName, Float size, Float semiMajorAxis, Float eccentricity) {
+        this.texture = new Texture(textureName);
+        this.size = size;
+        this.semiMajorAxis = semiMajorAxis;
+        this.eccentricity = eccentricity;
+        this.semiMinorAxis = calculateSemiMinorAxis(eccentricity,semiMajorAxis);
     }
 
     public abstract PhysicsProvider getPhysics();
 
-    public void update() {
+    void update() {
         Coord3D pos = getPhysics().updatePosition();
         if(pos!=null){
             prevPosX = posX;
@@ -44,7 +67,7 @@ public abstract class SpaceObject {
         }
     }
 
-    public void init() throws Exception{
+    void init() throws Exception{
         texture.upload();
         glLists.add(RenderUtils.prepareSphere(texture.id, size));
         if(hasAtmosphere){
@@ -61,13 +84,13 @@ public abstract class SpaceObject {
 //        }
     }
 
-    public void render(float framePart) {
-        float x = prevPosX + (prevPosX - posX) * framePart;
-        float y = prevPosY + (prevPosY - posY) * framePart;
-        float z = prevPosZ + (prevPosZ - posZ) * framePart;
+    public void render(Float framePart) {
+        Float x = prevPosX + (prevPosX - posX) * framePart;
+        Float y = prevPosY + (prevPosY - posY) * framePart;
+        Float z = prevPosZ + (prevPosZ - posZ) * framePart;
         FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
         lightPosition.put(-x).put(-y).put(-z).put(0.0f).flip();
-        float rot = prevRot + (prevRot - this.rot) * framePart;
+        Float rot = prevRot + (prevRot - this.rot) * framePart;
         glPushMatrix();
         if(renderInside)
             glDisable(GL_CULL_FACE);
@@ -86,4 +109,131 @@ public abstract class SpaceObject {
         glPopMatrix();
     }
 
+    public Float getSemiMajorAxis() {
+        return semiMajorAxis;
+    }
+
+    public void setSemiMajorAxis(Float semiMajorAxis) {
+        this.semiMajorAxis = semiMajorAxis;
+    }
+
+    public Float getSemiMinorAxis() {
+        return semiMinorAxis;
+    }
+
+    public void setSemiMinorAxis(Float semiMinorAxis) {
+        this.semiMinorAxis = semiMinorAxis;
+    }
+
+    public Float getPrevPosX() {
+        return prevPosX;
+    }
+
+    public void setPrevPosX(Float prevPosX) {
+        this.prevPosX = prevPosX;
+    }
+
+    public Float getPosX() {
+        return posX;
+    }
+
+    public void setPosX(Float posX) {
+        this.posX = posX;
+    }
+
+    public Float getPrevPosY() {
+        return prevPosY;
+    }
+
+    public void setPrevPosY(Float prevPosY) {
+        this.prevPosY = prevPosY;
+    }
+
+    public Float getPosY() {
+        return posY;
+    }
+
+    public void setPosY(Float posY) {
+        this.posY = posY;
+    }
+
+    public Float getPrevPosZ() {
+        return prevPosZ;
+    }
+
+    public void setPrevPosZ(Float prevPosZ) {
+        this.prevPosZ = prevPosZ;
+    }
+
+    public Float getPosZ() {
+        return posZ;
+    }
+
+    public void setPosZ(Float posZ) {
+        this.posZ = posZ;
+    }
+
+    public Float getPrevRot() {
+        return prevRot;
+    }
+
+    public Float getEccentricity() {
+        return eccentricity;
+    }
+
+    public void setEccentricity(Float eccentricity) {
+        this.eccentricity = eccentricity;
+    }
+
+    public void setPrevRot(Float prevRot) {
+        this.prevRot = prevRot;
+    }
+
+    public Float getRot() {
+        return rot;
+    }
+
+    public void setRot(Float rot) {
+        this.rot = rot;
+    }
+
+    public Float getSize() {
+        return size;
+    }
+
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public List<Integer> getGlLists() {
+        return glLists;
+    }
+
+    public void setGlLists(List<Integer> glLists) {
+        this.glLists = glLists;
+    }
+
+    public boolean isHasAtmosphere() {
+        return hasAtmosphere;
+    }
+
+    public boolean isIgnoreLight() {
+        return ignoreLight;
+    }
+
+    public void setIgnoreLight(boolean ignoreLight) {
+        this.ignoreLight = ignoreLight;
+    }
+
+    public boolean isRenderInside() {
+        return renderInside;
+    }
+
+    public void setRenderInside(boolean renderInside) {
+        this.renderInside = renderInside;
+    }
+
+    private static Float calculateSemiMinorAxis(Float ecc,Float sma){
+        return (float)Math.sqrt(1-ecc)*sma;
+    }
 }

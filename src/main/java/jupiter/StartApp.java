@@ -1,5 +1,12 @@
 package jupiter;
 
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.PixelFormat;
+
 import java.nio.ByteBuffer;
 
 import javax.swing.JOptionPane;
@@ -8,12 +15,6 @@ import jupiter.jupitermodel.JupiterModel;
 import jupiter.physics.PhysicsException;
 import jupiter.render.RenderUtils;
 import jupiter.resourсes.Resources;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.PixelFormat;
 
 
 public class StartApp {
@@ -141,9 +142,17 @@ public class StartApp {
         int dWheel = Mouse.getDWheel();
         if(dWheel!=0){
             if(dWheel>0)
-                distance++;
-            else
-                distance--;
+            {
+                if (Keyboard.isKeyDown(16))
+                    distance+=10;
+                else
+                    distance++;}
+            else{
+                if (Keyboard.isKeyDown(16))
+                    distance-=10;
+                else
+                    distance--;
+            }
         }
         if(Mouse.isButtonDown(0)){
             rotX += (clickY - Mouse.getY())/4f;
@@ -155,8 +164,8 @@ public class StartApp {
         clickY = Mouse.getY();
         if(distance>-10)
             distance = -10;
-        else if(distance<-500)
-            distance = -500;
+        else if(distance<-5000)
+            distance = -5000;
     }
 
     private static abstract class KeyBind {

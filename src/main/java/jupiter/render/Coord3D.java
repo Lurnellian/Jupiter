@@ -2,9 +2,9 @@ package jupiter.render;
 
 public class Coord3D {
 
-    public float x, y, z, rot;
+    public Float x, y, z, rot;
 
-    public Coord3D(float x, float y, float z, float rot) {
+    public Coord3D(Float x, Float y, Float z, Float rot) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -12,6 +12,6 @@ public class Coord3D {
     }
 
     public Coord3D(){
-        this(0, 0, 0, 0);
+        this(0F, 0F, 0F, 0F);
     }
 }
