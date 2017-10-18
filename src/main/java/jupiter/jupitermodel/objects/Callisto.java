@@ -14,7 +14,7 @@ public class Callisto extends SpaceObject {
 
     public Callisto(Jupiter jup) {
         super("callisto.png", SIZE, SEMI_MAJOR_AXIS, ECCENTRICITY);
-        this.physics = new RotationPhysicsProvider(jup, this, .0553f, -5f,0.143f);
+        this.physics = new RotationPhysicsProvider(jup, this, .10838f, -.001093f,0.143f);
     }
 
     @Override

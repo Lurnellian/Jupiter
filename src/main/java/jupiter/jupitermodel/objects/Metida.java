@@ -11,10 +11,9 @@ import static jupiter.resourсes.SpaceObjectConstants.METIDA.SIZE;
 public class Metida extends SpaceObject {
 
     private final PhysicsProvider physics;
-//TODO сделать не круглой
     public Metida(Jupiter jup) {
         super("metida.png",  SIZE, SEMI_MAJOR_AXIS, ECCENTRICITY);
-        this.physics = new RotationPhysicsProvider(jup, this, .0957f, -5f,0.041f);
+        this.physics = new RotationPhysicsProvider(jup, this, .0525f, -.00088f,0.041f);
     }
 
     @Override
