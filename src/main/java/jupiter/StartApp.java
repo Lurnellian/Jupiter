@@ -1,5 +1,9 @@
 package jupiter;
 
+
+import jupiter.jupitermodel.SpaceObject;
+import jupiter.jupitermodel.objects.Io;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -55,7 +59,6 @@ public class StartApp {
                 void pressed() {
                     model=true;
                     log.info("схематичный масштаб");
-
                 }
             }
     };

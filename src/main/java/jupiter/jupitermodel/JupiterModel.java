@@ -3,6 +3,7 @@ package jupiter.jupitermodel;
 import java.util.ArrayList;
 import java.util.List;
 
+import jupiter.StartApp;
 import jupiter.jupitermodel.objects.Callisto;
 import jupiter.jupitermodel.objects.Europa;
 import jupiter.jupitermodel.objects.Ganymede;
@@ -42,11 +43,11 @@ public class JupiterModel {
             obj.update();
     }
 
+
     public void setUnrealSize() throws Exception{
         for(SpaceObject obj : objects) {
             obj.refresh() ;
             obj.setSize(obj.getSize() + 0.001F);
         }
     }
-
 }
