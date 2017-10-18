@@ -14,7 +14,7 @@ public class Ganymede extends SpaceObject {
 
     public Ganymede(Jupiter jup) {
         super("ganymede.png",  SIZE, SEMI_MAJOR_AXIS, ECCENTRICITY);
-        this.physics = new RotationPhysicsProvider(jup, this, .0123f, -5f, 0.142f);
+        this.physics = new RotationPhysicsProvider(jup, this, .018f, -0.00044f, 0.142f);
     }
 
     @Override

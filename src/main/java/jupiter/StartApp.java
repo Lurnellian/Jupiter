@@ -1,5 +1,6 @@
 package jupiter;
 
+import jupiter.jupitermodel.objects.Io;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -8,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 
 import java.nio.ByteBuffer;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -18,10 +20,11 @@ import jupiter.resourсes.Resources;
 
 
 public class StartApp {
-
+    private static Logger log = Logger.getLogger(StartApp.class.getName());
     private boolean shouldExit = false;
     public static boolean working = true;
     public static boolean pausePhys = false;
+    public static boolean model =false;
     public static boolean physTicked = false;
     public static short ups = 20;
     private float distance = -50, rotX = 45, rotZ = 0;
@@ -40,6 +43,21 @@ public class StartApp {
                 void pressed() {
                     pausePhys = !pausePhys;
                 }
+            },
+            new KeyBind(Keyboard.KEY_1) {
+                @Override
+                void pressed() {
+                    model=false;
+                    log.info("реальный масштаб");
+                }
+            },
+            new KeyBind(Keyboard.KEY_2) {
+                @Override
+                void pressed() {
+                    model=true;
+                    log.info("схематичный масштаб");
+
+                }
             }
     };
 
@@ -56,7 +74,6 @@ public class StartApp {
             Display.setTitle("Jupiter");
             Display.setDisplayMode(new DisplayMode(Config.width, Config.height));
             Display.setResizable(true);
-            //TODO поменять иконку
             Display.setIcon(new ByteBuffer[] { Resources.getImageBuf("icon-16.png"), Resources.getImageBuf("icon-32.png") });
             Display.create(new PixelFormat(8, 8, 0, Config.samples));
             if(Config.vSync)
