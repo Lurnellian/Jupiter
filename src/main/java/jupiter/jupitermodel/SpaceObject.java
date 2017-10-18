@@ -32,7 +32,7 @@ public abstract class SpaceObject {
     private Float eccentricity;
     private Float semiMinorAxis;
     private Float prevPosX = 0F, posX = 0F, prevPosY = 0F, posY = 0F, prevPosZ = 0F, posZ = 0F, prevRot = 0F, rot = 0F;
-    private final Float size;
+    private Float size;
     private final Texture texture;
     private List<Integer> glLists = new ArrayList<>();
     private final boolean hasAtmosphere = this instanceof IHasAtmosphere;
@@ -107,6 +107,11 @@ public abstract class SpaceObject {
         if(renderInside)
             glEnable(GL_CULL_FACE);
         glPopMatrix();
+    }
+
+    public void refresh() throws Exception{
+        glLists.clear();
+        this.init();
     }
 
     public Float getSemiMajorAxis() {
@@ -236,4 +241,9 @@ public abstract class SpaceObject {
     private static Float calculateSemiMinorAxis(Float ecc,Float sma){
         return (float)Math.sqrt(1-ecc)*sma;
     }
+
+    public void setSize(Float size) {
+        this.size = size;
+    }
+
 }
