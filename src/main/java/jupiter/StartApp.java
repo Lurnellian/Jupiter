@@ -1,7 +1,9 @@
 package jupiter;
 
+
 import jupiter.jupitermodel.SpaceObject;
 import jupiter.jupitermodel.objects.Io;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -100,6 +102,7 @@ public class StartApp {
                     GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
                     jm.render(tickPart);
                     GL11.glPopMatrix();
+                    jm.setUnrealSize();
                 }
                 Display.update(); //Must be called even if display not visible
                 if(!Config.vSync)

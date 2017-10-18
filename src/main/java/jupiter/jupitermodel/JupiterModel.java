@@ -42,4 +42,12 @@ public class JupiterModel {
         for(SpaceObject obj : objects)
             obj.update();
     }
+
+
+    public void setUnrealSize() throws Exception{
+        for(SpaceObject obj : objects) {
+            obj.refresh() ;
+            obj.setSize(obj.getSize() + 0.001F);
+        }
+    }
 }
