@@ -2,6 +2,7 @@ package jupiter.jupitermodel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import jupiter.StartApp;
 import jupiter.jupitermodel.objects.Callisto;
@@ -14,6 +15,7 @@ import jupiter.jupitermodel.objects.Stars;
 import jupiter.physics.PhysicsThread;
 
 public class JupiterModel {
+    private static Logger log = Logger.getLogger(StartApp.class.getName());
     public final List<SpaceObject> objects = new ArrayList<>();
     public final PhysicsThread physics = new PhysicsThread(this);
 
@@ -43,11 +45,27 @@ public class JupiterModel {
             obj.update();
     }
 
+    public void setRealSize() throws Exception {
+        if (!StartApp.checkModel1) {
+            for (int i = 2; i < objects.size(); i++) {
+                objects.get(i).refresh();
+                objects.get(i).setSize(objects.get(i).getSize() / 10f);
+                objects.get(i).refresh();
+            }
+            StartApp.checkModel1=true;
+            StartApp.checkModel2=false;
+        }
+    }
 
     public void setUnrealSize() throws Exception{
-        for(SpaceObject obj : objects) {
-            obj.refresh() ;
-            obj.setSize(obj.getSize() + 0.001F);
+        if(!StartApp.checkModel2) {
+            for (int i = 2; i < objects.size(); i++) {
+                objects.get(i).refresh();
+                objects.get(i).setSize(objects.get(i).getSize() * 10f);
+                objects.get(i).refresh();
+            }
+            StartApp.checkModel1=false;
+            StartApp.checkModel2=true;
         }
     }
 }
