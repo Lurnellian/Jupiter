@@ -71,10 +71,10 @@ public class RenderUtils {
         whiteLight.put(1.0f).put(1.0f).put(1.0f).put(1.0f).flip();
 
         FloatBuffer lModelAmbient = BufferUtils.createFloatBuffer(4);
-        lModelAmbient.put(0.4f).put(0.4f).put(0.4f).put(1.0f).flip();
+        lModelAmbient.put(0.4f).put(0.4f).put(0.4f).put(0.3f).flip();
 
         glShadeModel(GL_SMOOTH);
-        glMaterial(GL_FRONT, GL_SPECULAR, whiteLight);
+        glMaterial(GL_FRONT, GL_DIFFUSE, whiteLight);
         glMaterialf(GL_FRONT, GL_SHININESS, 50.0f);
 
         glLight(GL_LIGHT0, GL_POSITION, lightPosition);
