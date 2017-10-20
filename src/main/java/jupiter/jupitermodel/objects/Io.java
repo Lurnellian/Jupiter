@@ -34,7 +34,7 @@ public class Io extends SpaceObject {
     private final PhysicsProvider physics;
     public Io(Jupiter jup) {
         super("io.png",  SIZE, SEMI_MAJOR_AXIS, ECCENTRICITY);
-        this.physics = new RotationPhysicsProvider(jup, this, .028f, -.0000125f,0.034f);
+        this.physics = new RotationPhysicsProvider(jup, this, .028f, -.0000125f,0.005f);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Io extends SpaceObject {
     @Override
     public void render(Float framePart) {
         FloatBuffer someLight = BufferUtils.createFloatBuffer(4);
-        someLight.put(1f).put(0.0f).put(0.0f).put(1f).flip();
+        someLight.put(0.82f).put(0.41f).put(0.11f).put(0.3f).flip();
         glMaterial(GL_FRONT, GL_DIFFUSE, someLight);
         glMaterial(GL_FRONT, GL_SPECULAR, someLight);
         glMaterialf(GL_FRONT, GL_SHININESS, 1.0f);

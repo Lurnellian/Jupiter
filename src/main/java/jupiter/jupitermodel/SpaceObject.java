@@ -246,4 +246,8 @@ public abstract class SpaceObject {
         this.size = size;
     }
 
+     public void refreshSMA(){
+        semiMinorAxis = calculateSemiMinorAxis(this.eccentricity,this.semiMajorAxis);
+     }
+
 }

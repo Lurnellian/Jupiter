@@ -49,7 +49,12 @@ public class JupiterModel {
         if (!StartApp.checkModel1) {
             for (int i = 2; i < objects.size(); i++) {
                 objects.get(i).refresh();
+                if(!(objects.get(i) instanceof Metida)){
+                    objects.get(i).setSemiMajorAxis(objects.get(i).getSemiMajorAxis() *2f);
+                }
+                objects.get(i).setEccentricity(objects.get(i).getEccentricity() -0.3f);
                 objects.get(i).setSize(objects.get(i).getSize() / 10f);
+                objects.get(i).refreshSMA();
                 objects.get(i).refresh();
             }
             StartApp.checkModel1=true;
@@ -61,7 +66,12 @@ public class JupiterModel {
         if(!StartApp.checkModel2) {
             for (int i = 2; i < objects.size(); i++) {
                 objects.get(i).refresh();
+                if(!(objects.get(i) instanceof Metida)){
+                    objects.get(i).setSemiMajorAxis(objects.get(i).getSemiMajorAxis() /2f);
+                }
+                objects.get(i).setEccentricity(objects.get(i).getEccentricity() +0.3f);
                 objects.get(i).setSize(objects.get(i).getSize() * 10f);
+                objects.get(i).refreshSMA();
                 objects.get(i).refresh();
             }
             StartApp.checkModel1=false;

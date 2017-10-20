@@ -27,7 +27,7 @@ public class RotationPhysicsProvider extends PhysicsProvider{
             angle+=speed;
             coord.x = center.getPosX() + (float)Math.cos(angle)*moon.getSemiMajorAxis() + moon.getSemiMajorAxis()*moon.getEccentricity();
             coord.y = center.getPosY() + (float)Math.sin(angle)*moon.getSemiMinorAxis();
-            coord.z = center.getPosZ() + orbitInclination; //deleted radius and math
+            coord.z = center.getPosZ() + orbitInclination*coord.x; //deleted radius and math
             coord.rot+=speedSelf;
         }
         return coord;

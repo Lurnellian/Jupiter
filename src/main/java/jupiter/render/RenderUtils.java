@@ -71,7 +71,7 @@ public class RenderUtils {
         whiteLight.put(1.0f).put(1.0f).put(1.0f).put(1.0f).flip();
 
         FloatBuffer lModelAmbient = BufferUtils.createFloatBuffer(4);
-        lModelAmbient.put(0.4f).put(0.4f).put(0.4f).put(0.3f).flip();
+        lModelAmbient.put(0.2f).put(0.2f).put(0.2f).put(0.3f).flip();
 
         glShadeModel(GL_SMOOTH);
         glMaterial(GL_FRONT, GL_DIFFUSE, whiteLight);
@@ -121,28 +121,6 @@ public class RenderUtils {
         glNewList(list, GL_COMPILE);
         glBindTexture(GL_TEXTURE_2D, texId);
         sphere.draw(size, Config.details, Config.details);
-        glEndList();
-        return list;
-    }
-
-    public static int prepareSquare(int texId, float size) {
-        int list = glGenLists(1);
-        glNewList(list, GL_COMPILE);
-        glDisable(GL_CULL_FACE);
-        glBindTexture(GL_TEXTURE_2D, texId);
-        glTranslatef(-size/2, -size/2, 0);
-        //glRotatef(180.0f, 0.0f, 0.0f, 0.0f);
-        glBegin(GL_QUADS);
-        glTexCoord2f(0.0f, 0.0f);
-        glVertex2f(0.0f, 0.0f);
-        glTexCoord2f(1.0f, 0.0f);
-        glVertex2f(size, 0.0f);
-        glTexCoord2f(1.0f, 1.0f);
-        glVertex2f(size, size);
-        glTexCoord2f(0.0f, 1.0f);
-        glVertex2f(0.0f, size);
-        glEnd();
-        glEnable(GL_CULL_FACE);
         glEndList();
         return list;
     }
