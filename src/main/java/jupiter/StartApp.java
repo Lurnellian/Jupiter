@@ -1,6 +1,8 @@
 package jupiter;
 
 
+import jupiter.jupitermodel.SpaceObject;
+import jupiter.resourсes.SpaceObjectConstants;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -189,8 +191,8 @@ public class StartApp {
         }
         clickX = Mouse.getX();
         clickY = Mouse.getY();
-        if(distance>-10)
-            distance = -10;
+        if(distance>-SpaceObjectConstants.JUPITER.SIZE-1)
+            distance = -SpaceObjectConstants.JUPITER.SIZE-1;
         else if(distance<-1000)
             distance = -1000;
     }
