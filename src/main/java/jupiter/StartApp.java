@@ -2,8 +2,7 @@ package jupiter;
 
 
 import jupiter.jupitermodel.SpaceObject;
-import jupiter.jupitermodel.objects.Io;
-
+import jupiter.resourсes.SpaceObjectConstants;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -27,10 +26,13 @@ public class StartApp {
     private boolean shouldExit = false;
     public static boolean working = true;
     public static boolean pausePhys = false;
-    public static boolean model =false;
+    private static boolean model1 =false;
+    private static boolean model2 =false;
+    public static boolean checkModel1 =true;
+    public static boolean checkModel2 =false;
     public static boolean physTicked = false;
     public static short ups = 20;
-    private float distance = -50, rotX = 45, rotZ = 0;
+    private float distance = -500, rotX = 45, rotZ = 0;
     private int width, height;
     private int clickX = 0, clickY = 0;
 
@@ -50,14 +52,14 @@ public class StartApp {
             new KeyBind(Keyboard.KEY_1) {
                 @Override
                 void pressed() {
-                    model=false;
+                    model1=true;
                     log.info("реальный масштаб");
                 }
             },
             new KeyBind(Keyboard.KEY_2) {
                 @Override
                 void pressed() {
-                    model=true;
+                    model2=true;
                     log.info("схематичный масштаб");
                 }
             }
@@ -102,7 +104,14 @@ public class StartApp {
                     GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
                     jm.render(tickPart);
                     GL11.glPopMatrix();
-                    jm.setUnrealSize();
+                    while(model1){
+                        jm.setRealSize();
+                        model1 = false;
+                    }
+                    while(model2){
+                        jm.setUnrealSize();
+                        model2 = false;
+                    }
                 }
                 Display.update(); //Must be called even if display not visible
                 if(!Config.vSync)
@@ -182,10 +191,10 @@ public class StartApp {
         }
         clickX = Mouse.getX();
         clickY = Mouse.getY();
-        if(distance>-10)
-            distance = -10;
-        else if(distance<-5000)
-            distance = -5000;
+        if(distance>-SpaceObjectConstants.JUPITER.SIZE-1)
+            distance = -SpaceObjectConstants.JUPITER.SIZE-1;
+        else if(distance<-1000)
+            distance = -1000;
     }
 
     private static abstract class KeyBind {
