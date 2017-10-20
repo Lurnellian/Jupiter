@@ -30,7 +30,7 @@ public class StartApp {
     public static boolean checkModel2 =false;
     public static boolean physTicked = false;
     public static short ups = 20;
-    private float distance = -50, rotX = 45, rotZ = 0;
+    private float distance = -500, rotX = 45, rotZ = 0;
     private int width, height;
     private int clickX = 0, clickY = 0;
 
