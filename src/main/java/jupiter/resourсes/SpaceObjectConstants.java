@@ -32,10 +32,9 @@ public final class SpaceObjectConstants{
         public static final Float SIZE = 60F*10/SCALE; //увеличил в 10 раз чтобы было видно
     }
     public static class CALLISTO{
-        /* Параметры для наглядной видимости траектории
-        public static final Float ECCENTRICITY = 0.75F;
-        public static final Float SEMI_MAJOR_AXIS = 1882700F/SCALE;
-        public static final Float SIZE = 2410.3F/SCALE * 10;*/
+//        public static final Float ECCENTRICITY = 0.75F;
+//        public static final Float SEMI_MAJOR_AXIS = 1882700F/SCALE;
+//        public static final Float SIZE = 2410.3F/SCALE * 10;
         public static final Float ECCENTRICITY = 0.0074F;
         public static final Float SEMI_MAJOR_AXIS = 1882700F/SCALE;
         public static final Float SIZE = 2410.3F/SCALE;
